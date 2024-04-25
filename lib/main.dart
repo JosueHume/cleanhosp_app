@@ -1,3 +1,4 @@
+import 'package:cleanhosp/routes.dart';
 import 'package:flutter/material.dart';
 import './telas/login/login_tela.dart';
 
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: routes,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
