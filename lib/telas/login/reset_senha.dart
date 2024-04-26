@@ -1,14 +1,13 @@
 import 'package:cleanhosp/constantes.dart';
-import 'package:cleanhosp/telas/login/login_registro.dart';
-import 'package:cleanhosp/telas/login/reset_senha.dart';
+import 'package:cleanhosp/telas/login/login_tela.dart';
+import 'package:cleanhosp/telas/widgets/InputText.dart';
+import 'package:cleanhosp/telas/widgets/LoginLabel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import '../widgets/InputText.dart';
-import '../widgets/LoginLabel.dart';
 
-class LoginTela extends StatelessWidget {
-  static String route = '/login';
-  const LoginTela({super.key});
+class ResetSenhaTela extends StatelessWidget {
+
+  static String route = '/resetsenha';
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class LoginTela extends StatelessWidget {
             child: ConstrainedBox(
               constraints: BoxConstraints(maxWidth: 500, minHeight: 500),
               child: Container(
-                padding: EdgeInsets.all(48),
+                padding: EdgeInsets.all(36),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.05),
                   borderRadius: BorderRadius.all(Radius.circular(24)),
@@ -31,23 +30,10 @@ class LoginTela extends StatelessWidget {
                   children: [
                     SizedBox(
                       width: double.infinity,
-                      child: LoginLabel('Login', textAlign: TextAlign.center,),
+                      child: LoginLabel('Recuperar Senha', textAlign: TextAlign.center),
                     ),
                     SizedBox(height: 20),
-                    InputText(placeholder: 'Usuário'),
-                    InputText(placeholder: 'Senha'),
-                    SizedBox(
-                      width: double.infinity,
-                      child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, ResetSenhaTela.route);
-                      },
-                      child: AppText('Esqueceu a sua senha?',
-                          textAlign: TextAlign.end,
-                          cor: Theme.of(context).primaryColor
-                      ),
-                    ),
-                    ),
+                    InputText(placeholder: 'E-mail'),
                     SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -64,17 +50,17 @@ class LoginTela extends StatelessWidget {
                               ),
                               foregroundColor: Colors.white,
                             ),
-                            child: Text('Entrar'))),
+                            child: Text('Enviar Link de Recuperação'))),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        AppText('Não tem uma Conta?'),
+                        AppText('Lembrou a Senha?'),
                         SizedBox(width: 6),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, LoginRegistro.route);
+                            Navigator.pushReplacementNamed(context, LoginTela.route);
                           },
-                          child: AppText('Criar conta.', cor: Colors.blue),
+                          child: AppText('Entrar.', cor: Colors.blue),
                         ),
                       ],
                     ),
@@ -86,19 +72,5 @@ class LoginTela extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class AppText extends StatelessWidget {
-  final String texto;
-  final TextAlign? textAlign;
-  final Color? cor;
-
-  AppText(this.texto, {this.textAlign, this.cor});
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(texto,
-        textAlign: textAlign, style: TextStyle(color: cor ?? Colors.white));
   }
 }
