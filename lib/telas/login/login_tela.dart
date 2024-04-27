@@ -8,7 +8,6 @@ import '../widgets/LoginLabel.dart';
 
 class LoginTela extends StatelessWidget {
   static String route = '/login';
-  const LoginTela({super.key});
 
   @override
   Widget build(BuildContext context) {

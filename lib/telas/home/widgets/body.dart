@@ -1,69 +1,61 @@
-import 'package:cleanhosp/constantes.dart';
-import 'package:cleanhosp/telas/login/login_tela.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:cleanhosp/telas/home/widgets/getLimpezas.dart';
+import 'package:cleanhosp/telas/home/widgets/sidebar.dart';
+import 'package:flutter/material.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Stack(
       children: [
         Container(
-            height: double.infinity,
-            width: 120,
-            padding: EdgeInsets.symmetric(vertical: 15),
-            decoration: BoxDecoration(
-              color: AppColors.darkBg,
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 15),
-                SvgPicture.asset('../lib/assets/icons/vassoura.svg',
-                width: 30,
-                ),
-                AppText('Limpezas'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/adicionar.svg',
-                  width: 30,
-                ),
-                AppText('Limpeza'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/ala.svg',
-                  width: 30,
-                ),
-                AppText('Ala'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/local.svg',
-                  width: 30,
-                ),
-                AppText('Local'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/localLimpeza.svg',
-                  width: 30,
-                ),
-                AppText('Local de Limpeza'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/produto.svg',
-                  width: 30,
-                ),
-                AppText('Produto'),
-                SizedBox(height: 28),
-                SvgPicture.asset('../lib/assets/icons/Equipamento.svg',
-                  width: 30,
-                ),
-                AppText('Equipamento'),
-                Spacer(),
-                SvgPicture.asset('../lib/assets/icons/logout.svg',
-                  width: 30,
-                ),
-                AppText('Sair'),
-              ],
-            )
+          color: Color(0xff333C4E),
+          width: double.infinity,
+          height: double.infinity,
         ),
-        Expanded(
-            child: Center(
-              child: Text(''),
-            ))
+        Row(
+          children: [
+            Sidebar(),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 64, horizontal: 46),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 60, // Altura do campo de pesquisa
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Pesquisar',
+                          prefixIcon: Icon(Icons.search),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.all(16),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20), // Espaçamento entre o campo de pesquisa e o título da lista
+                    Text(
+                      'Limpezas em andamento:', // Título da lista
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 20), // Espaçamento entre o título da lista e a listagem
+                    Expanded(
+                      child: GetLimpezas(), // Utilizando o novo widget ItemList
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ],
     );
   }
