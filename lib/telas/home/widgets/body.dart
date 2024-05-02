@@ -1,6 +1,6 @@
-import 'package:cleanhosp/telas/home/widgets/getLimpezas.dart';
-import 'package:cleanhosp/telas/home/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
+
+import 'navigation_drawer_widget.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
         ),
         Row(
           children: [
-            Sidebar(),
+            NavigationDrawerWidget(),
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 64, horizontal: 46),
@@ -47,9 +47,6 @@ class Body extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 20), // Espaçamento entre o título da lista e a listagem
-                    Expanded(
-                      child: GetLimpezas(), // Utilizando o novo widget ItemList
-                    ),
                   ],
                 ),
               ),

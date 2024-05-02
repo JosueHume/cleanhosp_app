@@ -1,12 +1,12 @@
 import 'dart:convert';
-import '../model/ala.dart';
 import 'package:http/http.dart' as http;
+import '../model/local_limpeza.dart';
 
-class AlaRepositorio {
-  final String url = "https://localhost:7143/api/Ala";
+class LocalLimpezaRepositorio {
+  final String url = "https://localhost:7143/api/LocalLimpeza";
 
-  Future<List<Ala>> getAlas() async {
-    List<Ala> data = [];
+  Future<List<LocalLimpeza>> getLocaisLimpezas() async {
+    List<LocalLimpeza> data = [];
     final uri = Uri.parse(url);
 
     try {
@@ -19,7 +19,7 @@ class AlaRepositorio {
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         final List<dynamic> jsonData = json.decode(response.body);
-        data = jsonData.map((json) => Ala.fromJson(json)).toList();
+        data = jsonData.map((json) => LocalLimpeza.fromJson(json)).toList();
       }
     } catch (e) {
       return data;
@@ -27,7 +27,7 @@ class AlaRepositorio {
     return data;
   }
 
-  Future<http.Response> updateAla({required Ala ala, required int id}) async {
+  Future<http.Response> updateLocalLimpeza({required LocalLimpeza localLimpeza, required int id}) async {
     final uri = Uri.parse("$url/$id");
     late http.Response response;
 
@@ -37,7 +37,7 @@ class AlaRepositorio {
         headers: <String, String>{
           'Content-type': 'application/json; charset=UTF-8'
         },
-        body: json.encode(ala),
+        body: json.encode(localLimpeza),
       );
     } catch (e) {
       return response;
@@ -45,7 +45,7 @@ class AlaRepositorio {
     return response;
   }
 
-  Future<http.Response> deleteAla({required int id}) async {
+  Future<http.Response> deleteLocalLimpeza({required int id}) async {
     final uri = Uri.parse("$url/$id");
     late http.Response response;
 
@@ -62,7 +62,7 @@ class AlaRepositorio {
     return response;
   }
 
-  Future<http.Response> addAla({required Ala ala}) async {
+  Future<http.Response> addLocalLimpeza({required LocalLimpeza localLimpeza}) async {
     final uri = Uri.parse(url);
     late http.Response response;
 
@@ -72,7 +72,7 @@ class AlaRepositorio {
         headers: <String, String>{
           'Content-type': 'application/json; charset=UTF-8'
         },
-        body: json.encode(ala),
+        body: json.encode(localLimpeza),
       );
     } catch (e) {
       return response;
@@ -81,9 +81,9 @@ class AlaRepositorio {
     return response;
   }
 
-  Future<Ala> getAlaPorId({required int id}) async {
+  Future<LocalLimpeza> getLocalPorId({required int id}) async {
     final uri = Uri.parse("$url/$id");
-    Ala? ala;
+    LocalLimpeza? localLimpeza;
 
     try {
       final response = await http.get(
@@ -95,11 +95,11 @@ class AlaRepositorio {
 
       if (response.statusCode >= 200 && response.statusCode <= 299) {
         final Map<String, dynamic> jsonData = json.decode(response.body);
-        ala = Ala.fromJson(jsonData);
+        localLimpeza = LocalLimpeza.fromJson(jsonData);
       }
     } catch (e) {
-      return ala!;
+      return localLimpeza!;
     }
-    return ala!;
+    return localLimpeza!;
   }
 }
