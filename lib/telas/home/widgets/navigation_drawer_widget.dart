@@ -5,6 +5,7 @@ import 'package:cleanhosp/telas/listagem/listagemLocal.dart';
 import 'package:cleanhosp/telas/listagem/listagemLocalLimpeza.dart';
 import 'package:cleanhosp/telas/listagem/listagemPessoa.dart';
 import 'package:cleanhosp/telas/listagem/listagemProduto.dart';
+import 'package:cleanhosp/telas/login/login_tela.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
@@ -13,8 +14,7 @@ class NavigationDrawerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final name = 'Josué';
     final email = 'josuephf@gmail.com';
-    final urlImage =
-        '';
+    final urlImage = 'https://i.imgur.com/XJAlgko.jpeg';
 
     return Drawer(
       child: Material(
@@ -58,25 +58,25 @@ class NavigationDrawerWidget extends StatelessWidget {
                   buildMenuItem(
                     text: 'Limpeza',
                     icon: Icons.cleaning_services_outlined,
-                    onClicked: () => selectedItem(context, 4),
+                    onClicked: () => selectedItem(context, 3),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Produtos',
                     icon: Icons.clean_hands_outlined,
-                    onClicked: () => selectedItem(context, 5),
+                    onClicked: () => selectedItem(context, 4),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Equipamentos',
                     icon: Icons.rocket_launch_outlined,
-                    onClicked: () => selectedItem(context, 6),
+                    onClicked: () => selectedItem(context, 5),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Pessoas',
                     icon: Icons.people,
-                    onClicked: () => selectedItem(context, 7),
+                    onClicked: () => selectedItem(context, 6),
                   ),
                   const SizedBox(height: 24),
                   Divider(color: Colors.white70),
@@ -84,7 +84,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   buildMenuItem(
                     text: 'Sair',
                     icon: Icons.logout,
-                    onClicked: () => selectedItem(context, 8),
+                    onClicked: () => selectedItem(context, 7),
                   ),
                 ],
               ),
@@ -141,7 +141,7 @@ class NavigationDrawerWidget extends StatelessWidget {
       style: TextStyle(color: color),
       decoration: InputDecoration(
         contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        hintText: 'Search',
+        hintText: 'Procurar',
         hintStyle: TextStyle(color: color),
         prefixIcon: Icon(Icons.search, color: color),
         filled: true,
@@ -211,6 +211,11 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 6:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ListagemPessoa(),
+        ));
+        break;
+      case 7:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => LoginTela(),
         ));
         break;
       //Sair

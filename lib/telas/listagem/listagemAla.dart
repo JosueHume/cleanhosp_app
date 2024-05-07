@@ -3,6 +3,7 @@ import 'package:cleanhosp/telas/cadastro/ala/localizar_ala.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:cleanhosp/data/model/ala.dart';
+import '../../data/pdf/gerarPDF.dart';
 import '../../data/repositorio/ala_repositorio.dart';
 import '../cadastro/ala/cadastrar_ala.dart';
 
@@ -59,6 +60,26 @@ class _ListagemAlaState extends State<ListagemAla> {
             foregroundColor: Colors.white,
             onPressed: () {
               Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (Ala ala) => '${ala.ala_id}: ${ala.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const localizarAla(),
@@ -71,7 +92,7 @@ class _ListagemAlaState extends State<ListagemAla> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {

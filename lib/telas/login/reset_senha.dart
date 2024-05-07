@@ -58,7 +58,9 @@ class ResetSenhaTela extends StatelessWidget {
                         SizedBox(width: 6),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, LoginTela.route);
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => LoginTela(),
+                            ));
                           },
                           child: AppText('Entrar.', cor: Colors.blue),
                         ),

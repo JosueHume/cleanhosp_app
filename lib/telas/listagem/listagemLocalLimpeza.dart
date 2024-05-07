@@ -5,6 +5,7 @@ import 'package:cleanhosp/telas/cadastro/localLimpeza/localizar_localLimpeza.dar
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import '../../data/model/local_limpeza.dart';
+import '../../data/pdf/gerarPDF.dart';
 
 class ListagemLocalLimpeza extends StatefulWidget {
   static final String route = '/localLimpeza';
@@ -61,6 +62,26 @@ class _ListagemLocalLimpezaState extends State<ListagemLocalLimpeza> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (LocalLimpeza localLimpeza) => '${localLimpeza.localLimpeza_id}: ${localLimpeza.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (context) => const LocalizarLocalLimpeza(),
                 ),
               );
@@ -71,7 +92,7 @@ class _ListagemLocalLimpezaState extends State<ListagemLocalLimpeza> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {

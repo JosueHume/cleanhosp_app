@@ -3,6 +3,7 @@ import 'package:cleanhosp/data/repositorio/produto_repositorio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../data/pdf/gerarPDF.dart';
 import '../cadastro/produto/cadastrar_produto.dart';
 import '../cadastro/produto/editar_produto.dart';
 import '../cadastro/produto/localizar_produto.dart';
@@ -62,6 +63,26 @@ class _ListagemProdutoState extends State<ListagemProduto> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (Produto produto) => '${produto.produto_id}: ${produto.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (context) => const localizarProduto(),
                 ),
               );
@@ -72,7 +93,7 @@ class _ListagemProdutoState extends State<ListagemProduto> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {

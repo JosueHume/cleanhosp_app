@@ -38,9 +38,11 @@ class LoginTela extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, ResetSenhaTela.route);
-                      },
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => ResetSenhaTela(),
+                          ));
+                        },
                       child: AppText('Esqueceu a sua senha?',
                           textAlign: TextAlign.end,
                           cor: Theme.of(context).primaryColor
@@ -71,7 +73,10 @@ class LoginTela extends StatelessWidget {
                         SizedBox(width: 6),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(context, LoginRegistro.route);
+                            print('Clicou em criar conta');
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => LoginRegistro(),
+                            ));
                           },
                           child: AppText('Criar conta.', cor: Colors.blue),
                         ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../../data/model/limpeza.dart';
+import '../../data/pdf/gerarPDF.dart';
 import '../cadastro/limpeza/cadastrar_limpeza.dart';
 import '../cadastro/limpeza/editar_limpeza.dart';
 
@@ -62,6 +63,26 @@ class _ListagemLimpezaState extends State<ListagemLimpeza> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (Limpeza limpeza) => '${limpeza.limpeza_id}: ${limpeza.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (context) => const localizarLimpeza(),
                 ),
               );
@@ -72,7 +93,7 @@ class _ListagemLimpezaState extends State<ListagemLimpeza> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {

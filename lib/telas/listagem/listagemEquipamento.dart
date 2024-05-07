@@ -4,6 +4,7 @@ import 'package:cleanhosp/telas/cadastro/equipamento/localizar_equipamento.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import '../../data/pdf/gerarPDF.dart';
 import '../cadastro/equipamento/cadastrar_equipamento.dart';
 import '../cadastro/equipamento/editar_equipamento.dart';
 
@@ -62,6 +63,26 @@ class _ListagemEquipamentoState extends State<ListagemEquipamento> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (Equipamento equipamento) => '${equipamento.equipamento_id}: ${equipamento.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (context) => const LocalizarEquipamento(),
                 ),
               );
@@ -72,7 +93,7 @@ class _ListagemEquipamentoState extends State<ListagemEquipamento> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {

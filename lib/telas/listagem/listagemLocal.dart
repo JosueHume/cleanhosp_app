@@ -4,6 +4,7 @@ import 'package:cleanhosp/telas/cadastro/local/editar_local.dart';
 import 'package:cleanhosp/telas/cadastro/local/localizar_local.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import '../../data/pdf/gerarPDF.dart';
 import '../../data/repositorio/local_repositorio.dart';
 
 class ListagemLocal extends StatefulWidget {
@@ -61,6 +62,26 @@ class _ListagemLocalState extends State<ListagemLocal> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  builder: (context) => PDFGerador(
+                    dados: data,
+                    mapItemToString: (Local local) => '${local.local_id}: ${local.ds_descricao}',
+                  ),
+                ),
+              );
+            },
+            child: const Icon(Icons.print),
+          ),
+          const SizedBox(
+              height: 10
+          ),
+          FloatingActionButton(
+            heroTag: 2,
+            backgroundColor: Colors.teal,
+            foregroundColor: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
                   builder: (context) => const LocalizarLocal(),
                 ),
               );
@@ -71,7 +92,7 @@ class _ListagemLocalState extends State<ListagemLocal> {
               height: 10
           ),
           FloatingActionButton(
-            heroTag: 2,
+            heroTag: 3,
             backgroundColor: Colors.teal,
             foregroundColor: Colors.white,
             onPressed: () {
